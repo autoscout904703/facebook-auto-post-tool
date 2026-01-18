@@ -1,0 +1,71 @@
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.autoscout904703.facebook-auto-post-tool">
+
+    <!-- 
+       The application name displayed to users. 
+       This app serves as a social media management tool for automating content scheduling operations on Facebook.
+    -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        
+        <!-- Main activity that serves as the entry point of the application -->
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Background service for automation tasks -->
+        <service android:name=".AutomationService" />
+    </application>
+
+    <!-- Permissions required for the application to function correctly -->
+    <uses-permission android:name="android.permission.INTERNET"
+        tools:ignore="ProtectedPermissions" />
+    <!-- 
+        Permission to access the internet is needed to connect with Facebook and other social media platforms 
+        for content scheduling and operations.
+    -->
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"
+        tools:ignore="ProtectedPermissions" />
+    <!-- 
+        This permission allows the app to check the state of network connectivity
+        to ensure successful background operations.
+    -->
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ProtectedPermissions" />
+    <!-- 
+        Permission to write to external storage is required for saving logs or media files related to scheduling tasks.
+    -->
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:ignore="ProtectedPermissions" />
+    <!-- 
+        This permission allows the application to read media files from the external storage, 
+        essential for content management tasks.
+    -->
+
+</manifest>
+```
+
+### Explanation of Manifest Configuration:
+
+- **Application Tag**: This contains the configuration settings for the application such as the app's name, icon, and theme. It registers the main activity and service components.
+- **MainActivity**: The entry point of the application where users will interact with the app's user interface.
+- **AutomationService**: A background service designed for handling automated content scheduling tasks, ensuring continuous operation compliant with social media management guidelines.
+- **Permissions**: 
+  - `INTERNET`: Necessary for network operations related to the app’s functionality in social media management.
+  - `ACCESS_NETWORK_STATE`: To monitor the network state, ensuring the app can perform its functions seamlessly.
+  - `WRITE_EXTERNAL_STORAGE` and `READ_EXTERNAL_STORAGE`: Required to manage files that may be utilized for automation tasks, such as storing configurations or logs.
+
+This configuration is designed to support the functionality of the Facebook auto post tool, emphasizing compliance with best practices for social media management and automation.
