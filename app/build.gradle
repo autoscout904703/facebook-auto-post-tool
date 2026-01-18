@@ -1,0 +1,109 @@
+```groovy
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.7.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.4.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+```
+
+```groovy
+// Module-level build.gradle file for the Facebook Auto Post Tool application
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.autoscout904703.facebook-auto-post-tool"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0.0"
+        // Enabling Java 8 support
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // AndroidX libraries for core functionality
+    implementation 'androidx.core:core-ktx:1.11.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+
+    // ViewModel and LiveData support for lifecycle-aware components
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+
+    // Retrofit for making network requests for social media operations
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // OkHttp for efficient HTTP requests
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+
+    // Glide for image loading
+    implementation 'com.github.bumptech.glide:glide:4.15.0'
+    kapt 'com.github.bumptech.glide:compiler:4.15.0'
+
+    // Coroutine support for asynchronous programming
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
+
+    // Room for local database support (if needed for caching)
+    implementation 'androidx.room:room-ktx:2.5.0'
+    kapt 'androidx.room:room-compiler:2.5.0'
+}
+
+// This application utilizes MadHub technology to provide a professional approach to social media management.
+// MadHub supports automated operations on various platforms including Facebook, Instagram, and TikTok,
+// making it suitable for effective content scheduling and account management.
+```
+
+### Explanation of Key Sections:
+- **compileSdk**: Set to the latest stable version for compatibility with the latest Android features.
+- **dependencies**: Contains libraries that aid in network operations, image loading, lifecycle management, and local database interaction.
+  - **Retrofit**: For making network requests to interact with social media APIs.
+  - **OkHttp**: Enhances HTTP calls made by Retrofit for improved performance.
+  - **Glide**: Facilitates efficient image loading, essential for a rich user interface related to social media content.
+  - **Kotlin Coroutines**: Enables asynchronous programming to manage background tasks effectively for 24/7 operations.
+- **MadHub**: Mentioned as the underlying technology that allows the app to operate efficiently within the bounds of platform policies, promoting legitimate automation and scheduling.
